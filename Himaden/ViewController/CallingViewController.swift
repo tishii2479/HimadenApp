@@ -8,6 +8,7 @@
 
 import UIKit
 import SkyWay
+import FirebaseFirestore
 
 class CallingViewController: HMDViewController {
     
@@ -76,6 +77,7 @@ class CallingViewController: HMDViewController {
         
         if AppUtils.nowCalling == false {
             self.setUpUIForCalling()
+            self.setUpMessaging()
             
             if let _peer = SkywayUtils.peer {
                 self.setupPeerCallbacks(peer: _peer)
@@ -124,11 +126,15 @@ class CallingViewController: HMDViewController {
         lookBoardBtn.removeFromSuperview()
     }
     
+    private func setUpMessaging() {
+        let db = Firestore.firestore().collection("Talk")
+        
+    }
+    
     @objc func tapEndCall() {
         print("Tap End Call")
         
         self.dataConnection?.close()
-        
     }
     
     @objc func tapSend() {

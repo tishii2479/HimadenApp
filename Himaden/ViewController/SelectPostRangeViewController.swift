@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class SelectPostRangeViewController: HMDSearchBarViewController {
 
@@ -18,11 +19,26 @@ class SelectPostRangeViewController: HMDSearchBarViewController {
         table.dataSource = self
         return table
     }()
+    private var postText: String?
+    private var image: Image?
+    
+    init(text: String?, image: Image?) {
+        super.init(nibName: nil, bundle: nil)
+        self.postText = text
+        self.image = image
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setUpUI()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        // For HMDPostBoardViewController
+        self.tableView = selectPostRangeTableView
+        
+        super.viewWillLayoutSubviews()
     }
     
     private func setUpUI() {
@@ -46,6 +62,14 @@ class SelectPostRangeViewController: HMDSearchBarViewController {
     // This method is called when clearNavigationBar right button was tapped
     @objc func tapRight() {
         print("Tap Create Post")
+        
+        PostUtils.savePostInformation(text: postText, image: image)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
 
 }
@@ -66,6 +90,5 @@ extension SelectPostRangeViewController: UITableViewDataSource {
         cell.setUpComponents(friend: friends[indexPath.section][indexPath.row], vc: self)
         return cell
     }
-    
     
 }

@@ -16,7 +16,7 @@ struct Setting {
     init(name: String) {
         self.name = name
         self.image = Image()
-        self.hasChild = false
+        self.hasChild = true
         self.children = [["aaa", "bbb"]]
     }
     

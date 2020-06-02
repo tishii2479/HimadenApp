@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Image {
+@objc class Image: NSObject {
     var name: String
     
-    init() {
+    override init() {
         name = "NAME"
     }
     

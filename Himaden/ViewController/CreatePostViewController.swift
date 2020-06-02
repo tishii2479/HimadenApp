@@ -61,7 +61,7 @@ class CreatePostViewController: UIViewController {
     // This method is called when clearNavigationBar right button is tapped
     @objc func tapRight() {
         // Present to select post range view
-        let selectRangeVC = SelectPostRangeViewController()
+        let selectRangeVC = SelectPostRangeViewController(text: textView.text, image: Image())
         
         self.navigationController?.pushViewController(selectRangeVC, animated: true)
     }

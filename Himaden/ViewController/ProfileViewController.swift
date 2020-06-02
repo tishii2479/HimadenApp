@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RealmSwift
+import FirebaseFirestore
 
 class ProfileViewController: HMDViewController {
     
@@ -41,31 +43,122 @@ class ProfileViewController: HMDViewController {
         return table
     }()
 
-    fileprivate var posts: [Post] = [Post(), Post(), Post()]
+    fileprivate var posts: [Post] = []
     
-    fileprivate var calls: [Call] = [Call(), Call()]
+    fileprivate var calls: [Call] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setUpUI()
+        
+        self.setUserData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setNavigationTitle(title: "プロフィール")
+        
+        self.loadPostTable()
+        self.loadCallTable()
     }
     
-    func setUpUI() {
+    private func setUpUI() {
         // Set background color
         self.view.backgroundColor = HMDColor.white
-        
-        // Set account info to profile view
-        profileView.setAccountInfo(friend: Account())
         
         // Set add subview
         self.view.addSubview(profileView)
         self.view.addSubview(profileToolBarView)
         self.view.addSubview(postTableView)
+    }
+    
+    private func setUserData() {
+        
+        // Set user data
+        do {
+            // Read realm to fetch this user's data
+            let realm = try Realm()
+            let selfUserId: String = AppUtils.userDefaults.string(forKey: "userId")!
+            
+            // Search for my data
+            if let selfData: Account = realm.objects(Account.self).filter("id == '\(selfUserId)'").first {
+                // Data found
+                
+                print("[debug] account found: \(selfData)")
+                
+                self.profileView.setAccountInfo(friend: selfData)
+            } else {
+                // Data not found
+                print("[error] data doesnt exist, signing up is not working")
+
+                // TODO: show users sign up did not go well
+            }
+        } catch {
+            print("[error] Realm load did not work")
+            
+            // TODO: Error screen
+        }
+    }
+    
+    private func loadCallTable() {
+        // Load data from firebase
+        // If it is offline read data from realm
+        
+        if calls.count == 0 {
+        
+            print("[debug] Reload call table")
+            
+            let calls = Firestore.firestore().collection("calls")
+            
+            calls.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    
+                    // TODO: Fetch data from realm
+                    
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        print("\(document.documentID) => \(data)")
+                        
+                        let call = Call(senderName: data["senderName"] as! String, receiverName: data["receiverName"] as! String)
+                        self.calls.append(call)
+                    }
+                }
+
+                self.callTableView.reloadData()
+            }
+        }
+    }
+    
+    private func loadPostTable() {
+        // Load data from firebase
+        // If it is offline read data from realm
+    
+        if posts.count == 0 {
+            print("[debug] Reload call table_________")
+            
+            let posts = Firestore.firestore().collection("posts")
+            
+            posts.getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    
+                    // TODO: Fetch data from realm
+                    
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        print("\(document.documentID) => \(data)")
+                        
+                        let post = Post(text: data["text"] as! String)
+                        self.posts.append(post)
+                    }
+                }
+
+                self.postTableView.reloadData()
+            }
+        }
     }
     
     // This method is called when setting button has been tapped

@@ -7,9 +7,11 @@
 //
 
 import FirebaseFirestore
+import RealmSwift
 
 class AccountUtils {
     
+    // MARK: Properties
     struct Info {
         var title: String
         var placeHolder: String
@@ -65,15 +67,24 @@ class AccountUtils {
     
     static let sex = ["男性", "女性", "その他"]
     
+    // MARK: Methods
     class func saveUserAccountInformation(userId: String) {
         let accounts = Firestore.firestore().collection("accounts")
         
         accounts.document(userId).getDocument(completion: { (document, error) in
             if let document = document, document.exists {
                 if let data: [String: Any] = document.data() {
-                    // TODO: Set data to realm
+                    // Set data to realm
+                        
+                    let account = Account(data: data)
                     
+                    let realm = try! Realm()
+
+                    try! realm.write {
+                        realm.add(account)
+                    }
                     
+                    print("Written account data to realm, Data: \(data)")
                 } else {
                     print("[error] data does not exist")
                 }

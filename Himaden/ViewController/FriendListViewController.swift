@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendListViewController: HMDSearchBarViewController {
 
@@ -29,11 +30,15 @@ class FriendListViewController: HMDSearchBarViewController {
         super.viewDidLoad()
 
         self.setUpUI()
-        self.loadFriendTable()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillLayoutSubviews() {
+        // This is needed to implement HMDSearchbarViewController
+        self.tableView = friendTableView
+
         setNavigationTitle(title: "友だち")
+        
+        super.viewWillLayoutSubviews()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,19 +48,9 @@ class FriendListViewController: HMDSearchBarViewController {
     private func setUpUI() {
         // Set background colors
         self.view.backgroundColor = HMDColor.white
-        
-        // This is needed to implement HMDSearchbarViewController
-        self.tableView = friendTableView
     
         // Add subview
         self.view.addSubview(friendTableView)
-    }
-    
-    
-    private func loadFriendTable() {
-        
-        // TODO: Firebase friend data load and realm data load
-        
     }
     
 }

@@ -18,12 +18,11 @@ class MessageToolBarView: UIView {
     
     private lazy var sendBtn: UIButton = {
         let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - sendBtnWidth - paddingX, y: paddingY, width: sendBtnWidth, height: toolBarHeight - paddingY * 2))
-        btn.backgroundColor = HMDColor.white
+        btn.layer.backgroundColor = HMDColor.white.cgColor
         btn.imageEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         btn.setImage(UIImage(named: "send"), for: .normal)
-        btn.layer.borderColor   = HMDColor.black.cgColor
-        btn.layer.borderWidth   = 1
-        
+        btn.layer.cornerRadius  = 5
+
         return btn
     }()
     

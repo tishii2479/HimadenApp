@@ -31,6 +31,7 @@ class LoginAccountTile: UIView {
     private var passwordField: StartTextField = {
         let field = StartTextField(frame: CGRect(x: 30, y: 180, width: 240, height: 50))
         field.setPlaceHolder(text: "パスワード")
+        field.isSecureTextEntry = true
         
         return field
     }()

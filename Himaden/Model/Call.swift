@@ -7,33 +7,39 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Call {
+class Call: Object {
     
-    var callId: Int
-    var senderId: String
-    var receiverId: String
-    var senderName: String
-    var receiverName: String
-    var startTime: Date
-    var endTime: Date
-    var talkId: Int
-    var groupId: String?
-    var status: Int
-    var memberWithStatus: [[String : Int]]?
+    @objc dynamic var callId: Int
+    @objc dynamic var senderId: String
+    @objc dynamic var receiverId: String
+    @objc dynamic var senderName: String
+    @objc dynamic var receiverName: String
+    @objc dynamic var startTime: String
+    @objc dynamic var endTime: String
+    @objc dynamic var talkId: Int
+    @objc dynamic var groupId: String
+    @objc dynamic var status: Int
     
-    init() {
+    required init() {
         callId = 1
         senderId = "aa"
         receiverId = "b"
         senderName = "aa"
         receiverName = "bb"
-        startTime = Date()
-        endTime = Date()
+        startTime = "startTime"
+        endTime = "endTime"
         talkId = 1
-        groupId = nil
+        groupId = "AAA"
         status = 1
-        memberWithStatus = nil
+    }
+    
+    convenience init (senderName: String, receiverName: String) {
+        self.init()
+        
+        self.senderName = senderName
+        self.receiverName = receiverName
     }
     
 }

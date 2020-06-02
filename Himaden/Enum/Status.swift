@@ -6,8 +6,10 @@
 //  Copyright © 2020 tishii2479. All rights reserved.
 //
 
-enum Status {
-    case calling
-    case online
-    case offline
+import Foundation
+
+@objc enum Status: Int {
+    case calling = 0
+    case online = 1
+    case offline = 2
 }

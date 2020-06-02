@@ -104,6 +104,9 @@ class CreateAccountTile: UIView {
         case .email:
             self.textField.inputView = nil
             self.textField.keyboardType = .emailAddress
+        case .password:
+            self.textField.inputView = nil
+            self.textField.isSecureTextEntry = true
         default:
             self.textField.inputView = nil
             self.textField.keyboardType = .alphabet

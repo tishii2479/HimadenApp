@@ -45,7 +45,7 @@ class FriendTableViewCell: UITableViewCell {
     func setUpComponents(friend: Friend) {
         nameLabel.text = friend.name
         detailLabel.text = friend.comment
-        statusLabel.setStatus(status: friend.status)
+        statusLabel.setStatus(status: Status(rawValue: friend.status) ?? .offline)
         
         self.contentView.addSubview(iconImageView)
         self.contentView.addSubview(nameLabel)

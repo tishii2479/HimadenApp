@@ -61,8 +61,13 @@ class FriendDetailedViewController: HMDPostBoardController {
         setUpUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillLayoutSubviews() {
         self.navigationController?.isNavigationBarHidden = true
+        
+        // For HMDPostBoardViewController
+        self.tableView = postTableView
+        
+        super.viewWillLayoutSubviews()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

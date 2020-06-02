@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import RealmSwift
 
 class BulletinBoardViewController: HMDPostBoardController {
 
@@ -27,11 +29,18 @@ class BulletinBoardViewController: HMDPostBoardController {
         self.setUpUI()
     }
     
+    override func viewWillLayoutSubviews() {
+        // For HMDPostBoardViewController
+        self.tableView = postTableView
+        
+        super.viewWillLayoutSubviews()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         setNavigationTitle(title: "タイムライン")
     }
     
-    func setUpUI() {
+    private func setUpUI() {
         // Set background color
         self.view.backgroundColor = HMDColor.white
         

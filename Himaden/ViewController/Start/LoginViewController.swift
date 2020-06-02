@@ -113,7 +113,6 @@ class LoginViewController: UIViewController {
                     
                 })
                 
-                
                 // Orange wave animation: fill to top
                 self.orangeFluid.fill(to: 1)
                 self.orangeFluid.startAnimation()

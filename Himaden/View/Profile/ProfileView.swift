@@ -132,7 +132,7 @@ class ProfileView: UIView {
         commentLabel.text = friend.comment
         commentLabel.sizeToFit()
         commentLabel.frame.size.width = labelWidth
-        statusView.setStatus(status: friend.status)
+        statusView.setStatus(status: Status(rawValue: friend.status) ?? .offline)
     }
     
     func setAccountInfoWhenCalling(account: Account) {

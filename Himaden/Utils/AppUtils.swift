@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AppUtils {
     
     static let userDefaults = UserDefaults.standard
     static var statusBarHeight: CGFloat = 44
     static var nowCalling: Bool = false
+    static var selfInformation: Account?
     
     // Transition to first screen
     class func transitionToFirstView(window: UIWindow?) {
-        
         // Comment below to use it normally
 //        userDefaults.removeObject(forKey: "userId")
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         checkFirstAccessAndSetFirstViewController(window: window)
         window?.makeKeyAndVisible()

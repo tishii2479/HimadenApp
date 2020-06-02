@@ -7,10 +7,47 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class HMDPostBoardController: HMDViewController {
-    var posts: [Post] = [Post()]
+    
+    var posts: [Post] = []
+    
     var postCellIdentifier: String = "Cell"
+    
+    var tableView: UITableView?
+    
+    override func viewWillLayoutSubviews() {
+        self.loadPostTable()
+    }
+    
+    func loadPostTable() {
+        // Load data from firebase
+        // If it is offline read data from realm
+        
+        print("[debug] Reload post table")
+        
+        let posts = Firestore.firestore().collection("posts")
+        
+        posts.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                
+                // TODO: Fetch data from realm
+                
+            } else {
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    print("\(document.documentID) => \(data)")
+                    
+                    let post = Post(text: data["text"] as! String)
+                    self.posts.append(post)
+                }
+            }
+
+            self.tableView?.reloadData()
+        }
+    }
 }
 
 

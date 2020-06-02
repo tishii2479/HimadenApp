@@ -44,6 +44,7 @@ class PostInfoView: UIView {
         let label = UILabel()
         label.font          = HMDFont.middle
         label.textColor     = HMDColor.black
+        label.numberOfLines = 0
         
         return label
     }()
@@ -103,7 +104,7 @@ class PostInfoView: UIView {
         navVC.modalPresentationStyle = .fullScreen
         
         self.vc.present(navVC, animated: true, completion: {
-            print("Present to FriendDetailedViewController with account: \(Account())")
+            print("Present to FriendDetailedViewController with account: c(Account())")
         })
     }
     

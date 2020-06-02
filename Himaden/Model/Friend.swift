@@ -6,10 +6,12 @@
 //  Copyright © 2020 tishii2479. All rights reserved.
 //
 
-protocol Friend {
-    var id: String { get set }
-    var name: String { get set }
-    var icon: Image { get set }
-    var comment: String { get set }
-    var status: Status { get set }
+import Foundation
+
+@objc protocol Friend {
+    @objc dynamic var id: String { get set }
+    @objc dynamic var name: String { get set }
+    @objc dynamic var icon: String { get set }
+    @objc dynamic var comment: String { get set }
+    @objc dynamic var status: Int { get set }
 }

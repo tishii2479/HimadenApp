@@ -282,17 +282,30 @@ class CreateAccountViewController: UIViewController {
                 print("Creating account has succeded")
                 
                 // User was created successfully, store the data in the database
-                let db = Firestore.firestore()
+                let accounts = Firestore.firestore().collection("accounts")
                 let userId: String = self.accountData[.userId]!
                 
+                // Process data into proper shape
+                var processedSex: Int!
+                
+                switch self.accountData[.sex] {
+                case "男性":
+                    processedSex = 1
+                case "女性":
+                    processedSex = 2
+                default:
+                    processedSex = 0
+                }
+                
                 // Add account data to firestore
-                db.collection("accounts").document(userId).setData([
+                accounts.document(userId).setData([
                     "name"          : self.accountData[.name]!,
                     "email"         : self.accountData[.email]!,
                     "password"      : self.accountData[.password]!,
-                    "sex"           : self.accountData[.sex]!,
+                    "sex"           : processedSex!,
                     "birthday"      : self.accountData[.birthday]!,
-                    "prefecture"    : self.accountData[.prefecture]!
+                    "prefecture"    : self.accountData[.prefecture]!,
+                    "comment"       : "",
                 ], completion: { (err) in
                     // Error occured in adding account data of database
                     if err != nil { print("[error] creating account to the database") }

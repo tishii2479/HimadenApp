@@ -10,7 +10,7 @@ import UIKit
 
 class HMDSettingViewController: HMDViewController {
 
-    fileprivate var settingNames: [[String]] = [["aaa"], ["bbb"]]
+    fileprivate var settingNames: [[String]] = [["aaa", "AAA", "AAA", "AAA", "AAA", "AAA"], ["bbb", "AAA", "AAA", "AAA", "AAA", "AAA"]]
     fileprivate var headerTitles: [String] = ["aaaaaaa", "bbbbbbb"]
     
     fileprivate lazy var settingTableView: SettingTableView = {
@@ -21,6 +21,10 @@ class HMDSettingViewController: HMDViewController {
         
         return table
     }()
+    
+    override func viewWillLayoutSubviews() {
+        self.setNavigationTitle(title: "設定")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +63,8 @@ extension HMDSettingViewController: UITableViewDelegate {
             nextSettingVC.setSettings(settingNames: setting.children, headerTitles: ["aaaaaaa"])
             
             self.navigationController?.pushViewController(nextSettingVC, animated: true)
+        } else {
+            print("[debug] setting has no child")
         }
     }
 }

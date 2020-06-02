@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HMDSearchBarViewController: HMDViewController {
     
@@ -24,6 +25,56 @@ class HMDSearchBarViewController: HMDViewController {
         super.viewDidLoad()
         
         self.view.addSubview(friendSearchBar)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        self.loadFriendTable()
+    }
+    
+    func loadFriendTable() {
+        // Firebase friend data load and realm data load
+        print("[debug] Reload friend table")
+        
+        // Reload from firebase
+        do {
+            let realm = try Realm()
+            
+            let accounts = Array(realm.objects(Account.self))
+            let groups = Array(realm.objects(Group.self))
+            
+            // TODO: Separate it by status
+            var onlineAccount = [Friend]()
+            var onlineGroup = [Friend]()
+            var nowCallingAccount = [Friend]()
+            var offline = [Friend]()
+            
+            for acc in accounts {
+                if acc.status == 0 {
+                    nowCallingAccount.append(acc)
+                } else if acc.status == 1 {
+                    onlineAccount.append(acc)
+                } else if acc.status == 2 {
+                    offline.append(acc)
+                }
+            }
+            
+            for gro in groups {
+                if gro.status == 1 {
+                    onlineGroup.append(gro)
+                } else if gro.status == 2 {
+                    offline.append(gro)
+                }
+            }
+            
+            self.friends = [onlineAccount, onlineGroup, nowCallingAccount, offline]
+            
+            self.tableView?.reloadData()
+        } catch {
+            print("[error] realm is not working")
+            
+            // TODO: error screen
+        }
+        
     }
 }
 
