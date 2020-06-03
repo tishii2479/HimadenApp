@@ -11,10 +11,10 @@ import UIKit
 
 class ProfileView: UIView {
 
-    fileprivate let labelWidth: CGFloat     = 200
-    fileprivate let marginY: CGFloat        = 20
-    fileprivate let iconDiameter: CGFloat   = 120
-    fileprivate var vc: UIViewController!
+    private let labelWidth: CGFloat     = 200
+    private let marginY: CGFloat        = 20
+    private let iconDiameter: CGFloat   = 120
+    private var vc: UIViewController!
     
     private lazy var iconImageView: UIImageView = {
         let view = UIImageView(frame: CGRect(x: Util.getMinXForCentering(width: iconDiameter), y: marginY, width: iconDiameter, height: iconDiameter))

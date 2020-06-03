@@ -13,7 +13,7 @@ class CreateAccountTile: UIView {
     private let width: CGFloat = 300
     private let height: CGFloat = 350
     private var vc: CreateAccountViewController!
-    private var item: AccountUtils.Item!
+    private var item: Account.Item!
     
     private lazy var nextBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: 50, y: 270, width: 200, height: 50))
@@ -92,7 +92,7 @@ class CreateAccountTile: UIView {
         self.textField.setPlaceHolder(text: text)
     }
     
-    func setInputView(item: AccountUtils.Item) {
+    func setInputView(item: Account.Item) {
         self.item = item
         switch item {
         case .prefecture:
@@ -141,25 +141,25 @@ extension CreateAccountTile: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if item == .prefecture {
-            return AccountUtils.prefectures.count
+            return Account.prefectures.count
         } else {
-            return AccountUtils.sex.count
+            return Account.sex.count
         }
     } 
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if item == .prefecture {
-            return AccountUtils.prefectures[row]
+            return Account.prefectures[row]
         } else {
-            return AccountUtils.sex[row]
+            return Account.sex[row]
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if item == .prefecture {
-            self.textField.text = AccountUtils.prefectures[row]
+            self.textField.text = Account.prefectures[row]
         } else {
-            self.textField.text = AccountUtils.sex[row]
+            self.textField.text = Account.sex[row]
         }
     }
 }

@@ -10,27 +10,27 @@ import UIKit
 
 class SelectPostRangeTableViewCell: UITableViewCell {
 
-    fileprivate let cellHeight: CGFloat     = 50
-    fileprivate let iconDiameter: CGFloat   = 40
-    fileprivate let paddingX: CGFloat       = 10
-    fileprivate let paddingY: CGFloat       = 5
-    fileprivate let addButtonWidth: CGFloat = 90
+    private let cellHeight: CGFloat     = 50
+    private let iconDiameter: CGFloat   = 40
+    private let paddingX: CGFloat       = 10
+    private let paddingY: CGFloat       = 5
+    private let addButtonWidth: CGFloat = 90
     
-    fileprivate lazy var iconImageView: UIImageView = {
+    private lazy var iconImageView: UIImageView = {
         let view = UIImageView(frame: CGRect(x: paddingX, y: paddingY, width: iconDiameter, height: iconDiameter))
         view.layer.cornerRadius = iconDiameter / 2
         view.backgroundColor    = HMDColor.lightGray
         
         return view
     }()
-    fileprivate lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: paddingX * 2 + iconDiameter, y: 0, width: UIScreen.main.bounds.width - paddingX * 4 - iconDiameter - addButtonWidth, height: cellHeight))
         label.font      = HMDFont.middle
         label.textColor = HMDColor.black
         
         return label
     }()
-    fileprivate lazy var addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - addButtonWidth - paddingX, y: 5, width: addButtonWidth, height: 40))
         button.backgroundColor      = HMDColor.white
         button.layer.borderColor    = HMDColor.lightGray.cgColor

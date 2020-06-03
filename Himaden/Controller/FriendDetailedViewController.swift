@@ -11,17 +11,17 @@ import FloatingPanel
 
 class FriendDetailedViewController: HMDPostBoardController {
 
-    fileprivate let profileHeight: CGFloat = 400
+    private let profileHeight: CGFloat = 400
     
-    fileprivate var friend: Friend!
+    private var friend: Friend!
     
-    fileprivate var tabController: UITabBarController!
+    private var tabController: UITabBarController!
     
-    fileprivate lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "閉じる", rightTitle: "", centerTitle: nil)
+    private lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "閉じる", rightTitle: "", centerTitle: nil)
     
-    fileprivate lazy var profileView: ProfileView = ProfileView(frame: CGRect(x: 0, y: clearNavBar.frame.maxY, width: UIScreen.main.bounds.width, height: profileHeight), vc: self)
+    private lazy var profileView: ProfileView = ProfileView(frame: CGRect(x: 0, y: clearNavBar.frame.maxY, width: UIScreen.main.bounds.width, height: profileHeight), vc: self)
     
-    fileprivate lazy var postLabel: UILabel = {
+    private lazy var postLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: profileView.frame.maxY, width: UIScreen.main.bounds.width, height: 40))
         label.backgroundColor   = HMDColor.white
         label.layer.borderWidth = 1
@@ -34,7 +34,7 @@ class FriendDetailedViewController: HMDPostBoardController {
         return label
     }()
     
-    fileprivate lazy var postTableView: PostTableView = {
+    private lazy var postTableView: PostTableView = {
         let table = PostTableView(frame: CGRect(x: 0, y: postLabel.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - postLabel.frame.maxY))
         table.register(PostTableViewCell.self, forCellReuseIdentifier: postCellIdentifier)
         table.delegate      = self
@@ -43,9 +43,9 @@ class FriendDetailedViewController: HMDPostBoardController {
         return table
     }()
     
-    fileprivate var floatingPanelController: FloatingPanelController = FloatingPanelController()
+    private var floatingPanelController: FloatingPanelController = FloatingPanelController()
     
-    fileprivate let settingGroup: String = "FriendSetting"
+    private let settingGroup: String = "FriendSetting"
     
     init(friend: Friend, tabBarController: UITabBarController) {
         super.init(nibName: nil, bundle: nil)
@@ -127,7 +127,7 @@ class FriendDetailedViewController: HMDPostBoardController {
 
 extension FriendDetailedViewController: FloatingPanelControllerDelegate {
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
-        let settingColumnCount = SettingUtils.getSettingGroupFromParentName(name: settingGroup).count
+        let settingColumnCount = Setting.getSettingGroupFromParentName(name: settingGroup).count
         return HMDFloatingPanelLayout(columnCount: settingColumnCount)
     }
     

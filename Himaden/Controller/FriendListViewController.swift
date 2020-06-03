@@ -12,12 +12,12 @@ import RealmSwift
 class FriendListViewController: HMDSearchBarViewController {
 
     // Header titles for table
-    fileprivate let headerTitles: [String] = ["オンライン", "通話中のグループ", "通話中の友達", "オフライン"]
+    private let headerTitles: [String] = ["オンライン", "通話中のグループ", "通話中の友達", "オフライン"]
 
     // Search bar height
-    fileprivate let searchBarHeight: CGFloat = 50
+    private let searchBarHeight: CGFloat = 50
     
-    fileprivate lazy var friendTableView: FriendTableView = {
+    private lazy var friendTableView: FriendTableView = {
         let table = FriendTableView(frame: CGRect(x: 0, y: friendSearchBar.frame.maxY, width: screenSize.width, height: screenSize.height - friendSearchBar.frame.maxY))
         table.register(FriendTableViewCell.self, forCellReuseIdentifier: "Cell")
         table.delegate = self

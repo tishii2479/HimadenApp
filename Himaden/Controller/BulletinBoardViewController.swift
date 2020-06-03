@@ -12,7 +12,7 @@ import RealmSwift
 
 class BulletinBoardViewController: HMDPostBoardController {
 
-    fileprivate lazy var postTableView: PostTableView = {
+    private lazy var postTableView: PostTableView = {
         let table = PostTableView(frame: CGRect(x: 0, y: statusBarHeight + navBarHeight, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - statusBarHeight - navBarHeight))
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "Cell")
         table.delegate = self
@@ -21,7 +21,7 @@ class BulletinBoardViewController: HMDPostBoardController {
         return table
     }()
     
-    fileprivate lazy var createPostBtn: CreatePostButton = CreatePostButton(vc: self)
+    private lazy var createPostBtn: CreatePostButton = CreatePostButton(vc: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()

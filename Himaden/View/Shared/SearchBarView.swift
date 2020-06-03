@@ -10,10 +10,10 @@ import UIKit
 
 class SearchBarView: UISearchBar {
 
-    fileprivate let padding: CGFloat = 5
-    fileprivate let barHeight: CGFloat = 50
-    fileprivate let btnWidth: CGFloat = 80
-    fileprivate var vc: HMDSearchBarViewController!
+    private let padding: CGFloat = 5
+    private let barHeight: CGFloat = 50
+    private let btnWidth: CGFloat = 80
+    private var vc: HMDSearchBarViewController!
     
     init(origin: CGPoint, vc: HMDSearchBarViewController) {
         super.init(frame: CGRect(origin: origin, size: CGSize(width: UIScreen.main.bounds.width, height: barHeight)))

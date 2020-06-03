@@ -10,10 +10,10 @@ import UIKit
 
 class CallTableViewCell: UITableViewCell {
 
-    fileprivate let iconDiameter: CGFloat   = 50
-    fileprivate let cellHeight: CGFloat     = 60
-    fileprivate let paddingX: CGFloat       = 10
-    fileprivate let timeLabelWidth: CGFloat = 100
+    private let iconDiameter: CGFloat   = 50
+    private let cellHeight: CGFloat     = 60
+    private let paddingX: CGFloat       = 10
+    private let timeLabelWidth: CGFloat = 100
     lazy var iconImage: UIButton = {
         let view = UIButton(frame: CGRect(x: paddingX, y: (cellHeight - iconDiameter) / 2, width: iconDiameter, height: iconDiameter))
         view.backgroundColor    = HMDColor.lightGray
@@ -21,14 +21,14 @@ class CallTableViewCell: UITableViewCell {
         
         return view
     }()
-    fileprivate lazy var textContentLabel: UILabel = {
+    private lazy var textContentLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: paddingX * 2 + iconDiameter, y: 0, width: UIScreen.main.bounds.width - iconDiameter - timeLabelWidth - paddingX * 4, height: cellHeight))
         label.textColor         = HMDColor.black
         label.font              = HMDFont.middle
         
         return label
     }()
-    fileprivate lazy var timeLabel: UILabel = {
+    private lazy var timeLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - paddingX - timeLabelWidth, y: 0, width: timeLabelWidth, height: cellHeight))
         label.textColor         = HMDColor.gray
         label.font              = HMDFont.little

@@ -10,10 +10,10 @@ import UIKit
 
 class HMDSettingViewController: HMDViewController {
 
-    fileprivate var settingNames: [[String]] = [["aaa", "AAA", "AAA", "AAA", "AAA", "AAA"], ["bbb", "AAA", "AAA", "AAA", "AAA", "AAA"]]
-    fileprivate var headerTitles: [String] = ["aaaaaaa", "bbbbbbb"]
+    private var settingNames: [[String]] = [["aaa", "AAA", "AAA", "AAA", "AAA", "AAA"], ["bbb", "AAA", "AAA", "AAA", "AAA", "AAA"]]
+    private var headerTitles: [String] = ["aaaaaaa", "bbbbbbb"]
     
-    fileprivate lazy var settingTableView: SettingTableView = {
+    private lazy var settingTableView: SettingTableView = {
         let table = SettingTableView(frame: CGRect(x: 0, y: navBarHeight + statusBarHeight, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - navBarHeight + statusBarHeight))
         table.delegate      = self
         table.dataSource    = self
@@ -53,7 +53,7 @@ extension HMDSettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("SettingTable pressed at indexPath: \(indexPath)")
         
-        let setting: Setting = SettingUtils.getSettingFromName(name: settingNames[indexPath.section][indexPath.row])
+        let setting: Setting = Setting.getSettingFromName(name: settingNames[indexPath.section][indexPath.row])
         
         if setting.hasChild {
             // Setting has children settings
@@ -82,7 +82,7 @@ extension HMDSettingViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SettingTableViewCell
         
         // Set up cells
-        cell.setUpComponents(setting: SettingUtils.getSettingFromName(name: settingNames[indexPath.section][indexPath.row]))
+        cell.setUpComponents(setting: Setting.getSettingFromName(name: settingNames[indexPath.section][indexPath.row]))
         
         return cell
     }

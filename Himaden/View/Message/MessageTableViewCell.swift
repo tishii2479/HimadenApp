@@ -11,11 +11,11 @@ import SnapKit
 
 class MessageTableViewCell: UITableViewCell {
     
-    fileprivate let iconDiameter: CGFloat   = 44
-    fileprivate let paddingX: CGFloat       = 20
-    fileprivate let paddingY: CGFloat       = 10
+    private let iconDiameter: CGFloat   = 44
+    private let paddingX: CGFloat       = 20
+    private let paddingY: CGFloat       = 10
     
-    fileprivate lazy var iconImageView: UIImageView = {
+    private lazy var iconImageView: UIImageView = {
         let view = UIImageView()
         view.layer.cornerRadius = iconDiameter / 2
         view.backgroundColor    = HMDColor.lightGray
@@ -23,7 +23,7 @@ class MessageTableViewCell: UITableViewCell {
         return view
     }()
     
-    fileprivate var messageLabel: UILabel = {
+    private var messageLabel: UILabel = {
         let label = UILabel()
         label.layer.backgroundColor = HMDColor.lightGray.cgColor
         label.textAlignment         = .center
@@ -38,7 +38,7 @@ class MessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    fileprivate var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor   = HMDColor.clear
         label.textColor         = HMDColor.black
@@ -47,7 +47,7 @@ class MessageTableViewCell: UITableViewCell {
         return label
     }()
     
-    fileprivate var timeLabel: UILabel = {
+    private var timeLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor   = HMDColor.clear
         label.textColor         = HMDColor.black

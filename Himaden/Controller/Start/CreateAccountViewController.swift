@@ -12,19 +12,19 @@ import Firebase
 
 class CreateAccountViewController: UIViewController {
     
-    private var item: AccountUtils.Item!
+    private var item: Account.Item!
     
-    private var itemInfo: AccountUtils.Info!
+    private var itemInfo: Account.Info!
     
     // The count which holds the item which is now inputting
     private var nowItemCount: Int = 0
     
     // Max count of input items
-    private let itemMax: Int = AccountUtils.paramName.count
+    private let itemMax: Int = Account.paramName.count
     
     private let initialWaveHeight: Double = 0.3
     
-    private var accountData: [AccountUtils.Item : String] = [:]
+    private var accountData: [Account.Item : String] = [:]
     
     private var backButton = StartBackButton()
     
@@ -85,8 +85,8 @@ class CreateAccountViewController: UIViewController {
     // Call this method to set the tile information
     // Before calling this method, nowItemCount should be changed to the proper amount
     private func setItemInfo() {
-        self.item = AccountUtils.Item(rawValue: nowItemCount)
-        self.itemInfo = AccountUtils.itemInfo[self.item]
+        self.item = Account.Item(rawValue: nowItemCount)
+        self.itemInfo = Account.itemInfo[self.item]
         tile.setPlaceHolder(text: itemInfo.placeHolder)
         tile.setTopLabelText(text: itemInfo.title)
         tile.setInputView(item: self.item)
@@ -143,7 +143,7 @@ class CreateAccountViewController: UIViewController {
         let formattedInput: String = input.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // Validate the input
-        let errorMessage: String? = AccountValidation.checkValidation(userInput: formattedInput, item: item)
+        let errorMessage: String? = nil
         
         if errorMessage == nil {
             // Input was valid
@@ -313,7 +313,7 @@ class CreateAccountViewController: UIViewController {
                 
                 // Save account data to UserDefaults
                 AppUtils.userDefaults.set(userId, forKey: "userId")
-                AccountUtils.saveUserAccountInformation(userId: userId)
+                Account.saveUserAccountInformation(userId: userId)
                 
                 // Reveal the start button
                 UIView.animate(withDuration: 1, animations: {

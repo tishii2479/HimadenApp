@@ -12,22 +12,22 @@ import FirebaseFirestore
 
 class CallingViewController: HMDViewController {
     
-    fileprivate var dataConnection: SKWDataConnection?
+    private var dataConnection: SKWDataConnection?
     
-    fileprivate let profileHeight: CGFloat  = 350
-    fileprivate let btnDiameter: CGFloat    = 80
+    private let profileHeight: CGFloat  = 350
+    private let btnDiameter: CGFloat    = 80
     
-    fileprivate var messages = [Message]()
+    private var messages = [Message]()
     
-    fileprivate lazy var profileAtCallView: ProfileView = {
+    private lazy var profileAtCallView: ProfileView = {
         let view = ProfileView(frame: CGRect(x: 0, y: statusBarHeight + navBarHeight, width: screenSize.width, height: profileHeight), vc: self)
         
         return view
     }()
     
-    fileprivate lazy var messageToolBar: MessageToolBarView = MessageToolBarView(origin: CGPoint(x: 0, y: profileAtCallView.frame.maxY), vc: self)
+    private lazy var messageToolBar: MessageToolBarView = MessageToolBarView(origin: CGPoint(x: 0, y: profileAtCallView.frame.maxY), vc: self)
     
-    fileprivate lazy var messageTableView: MessageTableView = {
+    private lazy var messageTableView: MessageTableView = {
         let table = MessageTableView(frame: CGRect(x: 0, y: messageToolBar.frame.maxY, width: screenSize.width, height: screenSize.height - messageToolBar.frame.maxY))
         table.register(MessageTableViewCell.self, forCellReuseIdentifier: "Cell")
         table.delegate = self
@@ -36,7 +36,7 @@ class CallingViewController: HMDViewController {
         return table
     }()
     
-    fileprivate lazy var searchFriendBtn: UIButton = {
+    private lazy var searchFriendBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: Util.getMinXForCentering(width: 200), y: UIScreen.main.bounds.height / 2 + 40, width: 200, height: 40))
         button.backgroundColor = HMDColor.clear
         button.setTitle("いま暇な友達を探す", for: .normal)
@@ -48,7 +48,7 @@ class CallingViewController: HMDViewController {
         return button
     }()
     
-    fileprivate lazy var lookBoardBtn: UIButton = {
+    private lazy var lookBoardBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: Util.getMinXForCentering(width: 200), y: UIScreen.main.bounds.height / 2 + 100, width: 200, height: 40))
         button.backgroundColor = HMDColor.clear
         button.setTitle("みんなの投稿を見る", for: .normal)
@@ -60,7 +60,7 @@ class CallingViewController: HMDViewController {
         return button
     }()
     
-    fileprivate var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: UIScreen.main.bounds.height / 2 - 120, width: UIScreen.main.bounds.width, height: 20))
         label.backgroundColor = HMDColor.clear
         label.text = "まだ通話が始まっていません"

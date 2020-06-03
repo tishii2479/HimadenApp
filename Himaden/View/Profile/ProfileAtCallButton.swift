@@ -8,8 +8,8 @@
 
 import UIKit
 
-fileprivate let btnDiameter: CGFloat    = 80
-fileprivate let padding: CGFloat        = 20
+private let btnDiameter: CGFloat    = 80
+private let padding: CGFloat        = 20
 
 class ProfileAtCallButton: UIButton {
     

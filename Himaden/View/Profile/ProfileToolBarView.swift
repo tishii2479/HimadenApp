@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileToolBarView: UISegmentedControl {
 
-    fileprivate let params: [String] = ["投稿", "通話履歴"]
+    private let params: [String] = ["投稿", "通話履歴"]
     
     init(origin: CGPoint, vc: UIViewController) {
         super.init(frame: CGRect(origin: origin, size: CGSize(width: UIScreen.main.bounds.width, height: 40)))

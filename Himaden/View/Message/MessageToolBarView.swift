@@ -10,11 +10,11 @@ import UIKit
 
 class MessageToolBarView: UIView {
 
-    fileprivate let paddingX: CGFloat       = 10
-    fileprivate let paddingY: CGFloat       = 5
-    fileprivate let sendBtnWidth: CGFloat   = 50
-    fileprivate let toolBarHeight: CGFloat  = 44
-    fileprivate var vc: UIViewController!
+    private let paddingX: CGFloat       = 10
+    private let paddingY: CGFloat       = 5
+    private let sendBtnWidth: CGFloat   = 50
+    private let toolBarHeight: CGFloat  = 44
+    private var vc: UIViewController!
     
     private lazy var sendBtn: UIButton = {
         let btn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - sendBtnWidth - paddingX, y: paddingY, width: sendBtnWidth, height: toolBarHeight - paddingY * 2))

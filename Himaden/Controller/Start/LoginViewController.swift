@@ -102,7 +102,7 @@ class LoginViewController: UIViewController {
                                 // UserId was convertable to String
                                 // Save account data to UserDefaults
                                 AppUtils.userDefaults.set(userId, forKey: "userId")
-                                AccountUtils.saveUserAccountInformation(userId: userId)
+                                Account.saveUserAccountInformation(userId: userId)
                             } else {
                                 // UserId wasn't convertable to String
                                 print("[error] userId wasn't fetchable")

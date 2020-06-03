@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileButton: UIButton {
 
-    fileprivate let btnDiameter: CGFloat = 80
+    private let btnDiameter: CGFloat = 80
     
     enum Kind: Int {
         case CALL

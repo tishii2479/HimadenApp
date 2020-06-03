@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import FirebaseFirestore
 
 class Call: Object {
     
@@ -41,5 +42,34 @@ class Call: Object {
         self.senderName = senderName
         self.receiverName = receiverName
     }
+    
+    class func saveCallInformation(call: Call) {
+        
+        let data: [String: Any] = [
+            "callId"        : call.callId,
+            "senderId"      : call.senderId,
+            "receiverId"    : call.receiverId,
+            "senderName"    : call.senderName,
+            "receiverName"  : call.receiverName,
+            "startTime"     : call.startTime,
+            "endTime"       : call.endTime,
+            "talkId"        : call.talkId,
+            "groupId"       : call.groupId,
+            "status"        : call.status,
+        ]
+        
+        // Add call to firebase
+        Firestore.firestore().collection("calls").addDocument(data: data, completion: { (err) in
+            // Error occured in saving a post to database
+            if err != nil {
+                print("[error] posting has occcured an error")
+            } else {
+                print("[debug] success")
+            }
+        })
+        
+        
+    }
+    
     
 }

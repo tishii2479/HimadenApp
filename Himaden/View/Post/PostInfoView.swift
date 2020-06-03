@@ -11,13 +11,13 @@ import SnapKit
 
 class PostInfoView: UIView {
 
-    fileprivate let padding: CGFloat            = 20
-    fileprivate let iconDiameter: CGFloat       = 60
-    fileprivate let callButtonDiameter: CGFloat = 60
-    fileprivate let labelWidth: CGFloat         = 200
-    fileprivate var vc: UIViewController!
+    private let padding: CGFloat            = 20
+    private let iconDiameter: CGFloat       = 60
+    private let callButtonDiameter: CGFloat = 60
+    private let labelWidth: CGFloat         = 200
+    private var vc: UIViewController!
     
-    fileprivate lazy var iconImage: UIButton = {
+    private lazy var iconImage: UIButton = {
         let view = UIButton(frame: CGRect(x: padding, y: padding, width: iconDiameter, height: iconDiameter))
         view.layer.cornerRadius     = iconDiameter / 2
         view.layer.backgroundColor  = HMDColor.lightGray.cgColor
@@ -25,22 +25,22 @@ class PostInfoView: UIView {
         
         return view
     }()
-    fileprivate lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: padding * 2 + iconDiameter, y: padding, width: labelWidth, height: 20))
         label.font          = HMDFont.big
         label.textColor     = HMDColor.black
         
         return label
     }()
-    fileprivate lazy var statusView: UserStatusView = UserStatusView(origin: CGPoint(x: padding * 3 + iconDiameter, y: padding * 2 + 20))
-    fileprivate lazy var postedDateLabel: UILabel = {
+    private lazy var statusView: UserStatusView = UserStatusView(origin: CGPoint(x: padding * 3 + iconDiameter, y: padding * 2 + 20))
+    private lazy var postedDateLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: statusView.frame.maxX + padding, y: statusView.frame.minY, width: 100, height: 15))
         label.font          = HMDFont.little
         label.textColor     = HMDColor.gray
         
         return label
     }()
-    fileprivate lazy var textContentLabel: UILabel = {
+    private lazy var textContentLabel: UILabel = {
         let label = UILabel()
         label.font          = HMDFont.middle
         label.textColor     = HMDColor.black
@@ -48,14 +48,14 @@ class PostInfoView: UIView {
         
         return label
     }()
-    fileprivate lazy var postImage: UIImageView = {
+    private lazy var postImage: UIImageView = {
         let view = UIImageView()
         view.layer.backgroundColor  = HMDColor.lightGray.cgColor
         view.layer.cornerRadius     = 10
         
         return view
     }()
-    fileprivate lazy var callButton: UIButton = {
+    private lazy var callButton: UIButton = {
         let btn = UIButton()
         btn.backgroundColor         = HMDColor.lightGray
         btn.layer.cornerRadius      = callButtonDiameter / 2

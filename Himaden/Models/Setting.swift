@@ -1,13 +1,27 @@
 //
-//  SettingUtils.swift
+//  Setting.swift
 //  Himaden
 //
 //  Created by tishii2479 on 2020/04/26.
 //  Copyright © 2020 tishii2479. All rights reserved.
 //
 
-class SettingUtils {
+struct Setting {
     
+    var name: String
+    var image: Image
+    var hasChild: Bool
+    var children: [[String]]
+    
+    init(name: String) {
+        self.name = name
+        self.image = Image()
+        self.hasChild = true
+        self.children = [["aaa", "bbb"]]
+    }
+    
+    // MARK: Property
+
     static let settingGroups: [String : [[String]]] = [
         "aaa"               : [["ccc", "ddd"]],
         "bbb"               : [["ccc", "ddd"]],
@@ -27,7 +41,9 @@ class SettingUtils {
         "addToParty"        : Setting(name: "パーティに追加"),
     ]
     
-    class func getSettingFromName(name: String) -> Setting {
+    // MARK: Method
+    
+    static func getSettingFromName(name: String) -> Setting {
         if let item = settingItems[name] {
             return item
         } else {
@@ -36,7 +52,7 @@ class SettingUtils {
         }
     }
     
-    class func getSettingGroupFromParentName(name: String) -> [[String]] {
+    static func getSettingGroupFromParentName(name: String) -> [[String]] {
         if let group = settingGroups[name] {
             return group
         } else {
@@ -44,5 +60,4 @@ class SettingUtils {
             return [["aaa"]]
         }
     }
-    
 }

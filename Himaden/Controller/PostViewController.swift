@@ -10,9 +10,9 @@ import UIKit
 
 class PostViewController: HMDViewController {
 
-    fileprivate var postInfoView: PostInfoView!
+    private var postInfoView: PostInfoView!
     
-    fileprivate var post: Post!
+    private var post: Post!
     
     // When using this view controller, you have to pass a post
     init(post: Post) {

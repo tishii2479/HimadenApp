@@ -11,13 +11,13 @@ import SnapKit
 
 class PostTableViewCell: UITableViewCell {
 
-    fileprivate let iconDiameter: CGFloat   = 50
-    fileprivate let cellLeftWidth: CGFloat  = 90
-    fileprivate let paddingX: CGFloat       = 20
-    fileprivate let paddingY: CGFloat       = 10
-    fileprivate let labelWidth: CGFloat     = 200
+    private let iconDiameter: CGFloat   = 50
+    private let cellLeftWidth: CGFloat  = 90
+    private let paddingX: CGFloat       = 20
+    private let paddingY: CGFloat       = 10
+    private let labelWidth: CGFloat     = 200
     
-    fileprivate lazy var header: UILabel = {
+    private lazy var header: UILabel = {
         let label = UILabel()
         label.font              = HMDFont.little
         label.textColor         = HMDColor.gray
@@ -34,7 +34,7 @@ class PostTableViewCell: UITableViewCell {
         return view
     }()
     
-    fileprivate lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font              = HMDFont.big
         label.textColor         = HMDColor.black
@@ -43,7 +43,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    fileprivate lazy var textContentLabel: UILabel = {
+    private lazy var textContentLabel: UILabel = {
         let label = UILabel()
         label.font              = HMDFont.middle
         label.textColor         = HMDColor.black
@@ -53,7 +53,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    fileprivate lazy var postImage: UIImageView = {
+    private lazy var postImage: UIImageView = {
         let view = UIImageView()
         view.layer.backgroundColor    = HMDColor.lightGray.cgColor
         view.layer.cornerRadius = 10
@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
         return view
     }()
     
-    fileprivate lazy var postDateLabel: UILabel = {
+    private lazy var postDateLabel: UILabel = {
         let label = UILabel()
         label.font              = HMDFont.little
         label.textColor         = HMDColor.gray
@@ -72,7 +72,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    fileprivate var statusView: UserStatusView!
+    private var statusView: UserStatusView!
     
     func setUpComponents(post: Post) {
         

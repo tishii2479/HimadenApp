@@ -10,8 +10,8 @@ import UIKit
 
 class CreatePostButton: UIButton {
 
-    fileprivate let btnDiameter: CGFloat = 60
-    fileprivate let margin: CGFloat = 20
+    private let btnDiameter: CGFloat = 60
+    private let margin: CGFloat = 20
     
     init(vc: UIViewController) {
         super.init(frame: CGRect(x: UIScreen.main.bounds.width - btnDiameter - margin, y: UIScreen.main.bounds.height - 80 - margin - btnDiameter, width: btnDiameter, height: btnDiameter))

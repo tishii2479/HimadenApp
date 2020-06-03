@@ -10,10 +10,10 @@ import UIKit
 
 class CreatePostViewController: UIViewController {
     
-    fileprivate let iconDiameter: CGFloat       = 60
-    fileprivate let padding: CGFloat            = 20
+    private let iconDiameter: CGFloat       = 60
+    private let padding: CGFloat            = 20
     
-    fileprivate lazy var iconImage: UIImageView = {
+    private lazy var iconImage: UIImageView = {
         let view = UIImageView(frame: CGRect(x: padding, y: clearNavBar.frame.maxY + padding, width: iconDiameter, height: iconDiameter))
         view.layer.cornerRadius     = iconDiameter / 2
         view.layer.backgroundColor  = HMDColor.lightGray.cgColor
@@ -21,7 +21,7 @@ class CreatePostViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var textView: UITextView = {
+    private lazy var textView: UITextView = {
         let view = UITextView(frame: CGRect(x: padding * 2 + iconDiameter, y: clearNavBar.frame.maxY + padding, width: UIScreen.main.bounds.width - padding * 3 - iconDiameter, height: 200))
         view.backgroundColor = HMDColor.clear
         view.font = HMDFont.middle
@@ -29,7 +29,7 @@ class CreatePostViewController: UIViewController {
         return view
     }()
     
-    fileprivate lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "閉じる", rightTitle: "進む", centerTitle: "投稿を作成")
+    private lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "閉じる", rightTitle: "進む", centerTitle: "投稿を作成")
     
     override func viewDidLoad() {
         super.viewDidLoad()

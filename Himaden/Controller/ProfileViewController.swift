@@ -13,17 +13,17 @@ import FirebaseFirestore
 class ProfileViewController: HMDViewController {
     
     // Declaring explanatory variable
-    fileprivate let POST: Int = 0
-    fileprivate let CALL: Int = 1
+    private let POST: Int = 0
+    private let CALL: Int = 1
     
     // Profile view height
-    fileprivate let profileHeight: CGFloat = 300
+    private let profileHeight: CGFloat = 300
     
-    fileprivate lazy var profileView: ProfileView = ProfileView(frame: CGRect(x: 0, y: statusBarHeight + navBarHeight, width: UIScreen.main.bounds.width, height: profileHeight), vc: self)
+    private lazy var profileView: ProfileView = ProfileView(frame: CGRect(x: 0, y: statusBarHeight + navBarHeight, width: UIScreen.main.bounds.width, height: profileHeight), vc: self)
     
-    fileprivate lazy var profileToolBarView: ProfileToolBarView = ProfileToolBarView(origin: CGPoint(x: 0, y: profileView.frame.maxY), vc: self)
+    private lazy var profileToolBarView: ProfileToolBarView = ProfileToolBarView(origin: CGPoint(x: 0, y: profileView.frame.maxY), vc: self)
     
-    fileprivate lazy var postTableView: PostTableView = {
+    private lazy var postTableView: PostTableView = {
         let table = PostTableView(frame: CGRect(x: 0, y: profileToolBarView.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - profileToolBarView.frame.maxY))
         table.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableCell")
         table.delegate      = self
@@ -33,7 +33,7 @@ class ProfileViewController: HMDViewController {
         return table
     }()
     
-    fileprivate lazy var callTableView: CallTableView = {
+    private lazy var callTableView: CallTableView = {
         let table = CallTableView(frame: CGRect(x: 0, y: profileToolBarView.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - profileToolBarView.frame.maxY))
         table.register(CallTableViewCell.self, forCellReuseIdentifier: "CallTableCell")
         table.delegate      = self
@@ -43,9 +43,9 @@ class ProfileViewController: HMDViewController {
         return table
     }()
 
-    fileprivate var posts: [Post] = []
+    private var posts: [Post] = []
     
-    fileprivate var calls: [Call] = []
+    private var calls: [Call] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

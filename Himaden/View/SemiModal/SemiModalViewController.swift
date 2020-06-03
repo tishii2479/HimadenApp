@@ -31,8 +31,8 @@ class SemiModalViewController: UIViewController {
         self.view.backgroundColor = HMDColor.white
         
         var count = 0
-        for (index, item) in SettingUtils.getSettingGroupFromParentName(name: settingGroup).enumerated() {
-            let column = SemiModalColumnView(setting: SettingUtils.getSettingFromName(name: item[0]), itemNumber: index)
+        for (index, item) in Setting.getSettingGroupFromParentName(name: settingGroup).enumerated() {
+            let column = SemiModalColumnView(setting: Setting.getSettingFromName(name: item[0]), itemNumber: index)
             self.view.addSubview(column)
             count += 1
         }

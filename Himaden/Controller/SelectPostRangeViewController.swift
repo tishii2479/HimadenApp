@@ -11,15 +11,18 @@ import FirebaseFirestore
 
 class SelectPostRangeViewController: HMDSearchBarViewController {
 
-    fileprivate lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "戻る", rightTitle: "投稿する", centerTitle: "投稿範囲の決定")
-    fileprivate lazy var selectPostRangeTableView: SelectPostRangeTableView = {
+    private lazy var clearNavBar: ClearNavigationBar = ClearNavigationBar(vc: self, leftTitle: "戻る", rightTitle: "投稿する", centerTitle: "投稿範囲の決定")
+    
+    private lazy var selectPostRangeTableView: SelectPostRangeTableView = {
         let table = SelectPostRangeTableView(frame: CGRect(x: 0, y: friendSearchBar.frame.maxY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - friendSearchBar.frame.maxY))
         table.register(SelectPostRangeTableViewCell.self, forCellReuseIdentifier: "Cell")
         table.delegate = self
         table.dataSource = self
         return table
     }()
+    
     private var postText: String?
+    
     private var image: Image?
     
     init(text: String?, image: Image?) {
@@ -63,7 +66,7 @@ class SelectPostRangeViewController: HMDSearchBarViewController {
     @objc func tapRight() {
         print("Tap Create Post")
         
-        PostUtils.savePostInformation(text: postText, image: image)
+        Post.savePostInformation(text: postText, image: image)
         
         self.dismiss(animated: true, completion: nil)
     }
